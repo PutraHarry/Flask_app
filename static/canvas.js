@@ -155,8 +155,40 @@ function sketch(event) {
     ctx.stroke();
 }
 
-var link = document.getElementById('convertSubmit');
-link.addEventListener('click', function (ev) {
-    link.href = canvas.toDataURL();
-    link.download = "testcanvas.png";
-}, false);
+
+
+function savePNG() {
+    console.log('helloooooooooo');
+    var imgURL = canvas.toDataURL();
+    console.log(imgURL)
+    var image = new Image(); //buat image baru
+    image.src = imgURL; //buat image dari base64 dari canvas ke image
+
+    var fd = new FormData(); //buat form data baru 
+    fd.append('file', image); // append image ke form nya
+
+    $.ajax({
+        type: "POST",
+        url: "/upload",
+        data: fd,
+        processData: false,
+        contentType: false
+      }).done(function() {
+        console.log('sent');
+      });   
+}
+
+// var link = document.getElementById('convertSubmit');
+// link.addEventListener('click', function (ev) {
+//     console.log('helloooooooooo');
+//     var imgURL = canas.toDataURL();
+//     $.ajax({
+//         type: "POST",
+//         url: "http://127.0.0.1:5000/upload",
+//         data:{
+//           imageBase64: imgURL
+//         }
+//       }).done(function() {
+//         console.log('sent');
+//       });
+// }, false);

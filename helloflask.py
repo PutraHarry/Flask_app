@@ -5,7 +5,7 @@ from flask import Flask, render_template, flash, request, redirect, url_for, sen
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
-UPLOAD_FOLDER = 'D:\\Libraries\\Project\\Python\\Flask_app-master\\static\\uploads'
+UPLOAD_FOLDER = 'D:\\gemastik 12\\urpaw\\Flask_app'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -24,6 +24,7 @@ def homepage():
 @app.route("/upload", methods= ['POST','GET'])
 def upload_file():
     if request.method == 'POST':
+
         if 'file' not in request.files:
             flash('No file')
             return redirect(request.url)
